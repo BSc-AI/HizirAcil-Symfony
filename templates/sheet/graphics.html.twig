@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Grafikler{% endblock %}
+{% block body %}
+    <div class="breadcrumbs">
+        <div class="col-sm-4">
+            <div class="page-header float-left">
+                <div class="page-title">
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-8">
+            <div class="page-header float-right">
+                <div class="page-title">
+                    <ol class="breadcrumb text-right">
+                        <li><a class="active">Anasayfa</a></li>
+                        <li><a class="active">Harita</a></li>
+                        <li class="active">Grafikler</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+
+    <div id="div_chart"class="boyut"></div>
+    <div id="div_tani"class="boyut"></div>
+    <div id="div_ılce"class="boyut"></div>
+    <div id="piechart" class="boyut"></div>
+
+    <select id="piechart" class="btn btn-light">
+        <option value="1" id="AfyonYolu">Afyon Yolu</option>
+        <option value="2" id="Alpu">Alpu</option>
+        <option value="3" id="Odunpazarı">Odunpazarı</option>
+        <option value="4" id="AnkaraYolu">Ankara Yolu</option>
+        <option value="5" id="Beylikova">Beylikova</option>
+        <option value="6" id="BursaYolu">Bursa Yolu</option>
+        <option value="7" id="Çifteler">Çifteler</option>
+        <option value="8" id="GünYüzü">Gün Yüzü</option>
+        <option value="9" id="Han">Han</option>
+        <option value="10" id="İnönü">İnönü</option>
+        <option value="11" id="KütahyaYolu">Kütahya Yolu</option>
+        <option value="12" id="Mahmudiye">Mahmudiye</option>
+        <option value="13" id="Mihalgazi">Mihalgazi</option>
+        <option value="14" id="Mihaliccik">Mihaliccik</option>
+        <option value="15" id="Sarıcakaya">Sarıcakaya</option>
+        <option value="16" id="Seyitgazi">Seyitgazi</option>
+        <option value="17" id="Sivrihisar">Sivrihisar</option>
+        <option value="18" id="Tepebaşı">Tepebaşı</option>
+    </select>
+
+
+    <link rel="stylesheet" type="text/css" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+    <link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/MarkerCluster.css" />
+    <link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/MarkerCluster.Default.css" />
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+
+    <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js'></script>
+    <script type='text/javascript' src='http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js'></script>
+    <script type='text/javascript' src='http://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/leaflet.markercluster.js'></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type='text/javascript' src='{{ asset('assets') }}/maps/markers.js'></script>
+    <script type='text/javascript' src='{{ asset('assets') }}/maps/leaf-demo.js'></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+    <script type="text/javascript">
+
+        {{ gc_draw(piechart, 'div_chart') }}//Sonuc
+        {{ gc_draw(chartilce, 'div_ılce') }}//ilce
+        {{ gc_draw(chartTani, 'div_tani') }}//Tanı Genel
+
+    </script>
+{% endblock %}
+

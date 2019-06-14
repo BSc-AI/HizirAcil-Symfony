@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+{% block javascripts %}
+    <script src="jquery.min.js"></script>
+    <script src="jquery.linkedSelect.min.js"></script>
+
+    <script language = "javascript">
+        $(document).ready(function(){
+            $("#loadstudent").on("click", function(event){
+                $.ajax({
+                    url:        '/api/ilceler',
+                    type:       'get',
+                    dataType:   'json',
+                    async:      true,
+
+                    "success": function(data, status) {
+                        var e = $('<tr><th>ilce</th><th>tani</th></tr>');
+                        $('#student').html('');
+                        $('#student').append(e);
+
+                        console.log(data);
+
+                        for (i = 0; i < 100; i++) {
+                            student = data[i];
+                            //console.log("hata"+student);
+                            var e = $('<tr><td id="ilce"></td><td id="tani"></td></tr>');
+
+                            $('#ilce', e).html(student['ilce']);
+                            $('#tani', e).html(student['tani']);
+                            $('#student').append(e);
+
+                        }
+                    },
+                    error : function(xhr, textStatus, errorThrown) {
+                        alert('Ajax request failed.');
+                    }
+                });
+            });
+
+
+        });
+
+    </script>
+{% endblock %}
+
+{% block stylesheets %}
+    <style>
+        .table { border-collapse: collapse; }
+        .table th, td {
+            border-bottom: 1px solid #ddd;
+            width: 250px;
+            text-align: left;
+            align: left;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <a id="loadstudent" href="#">Load student information</a>
+
+
+    </br>
+    </br>
+
+    <table class="table">
+        <tbody id="student"></tbody>
+    </table>
+{% endblock %}

@@ -1,0 +1,330 @@
+{% extends 'base.html.twig' %}
+{% block title %}Hasta Kayıt{% endblock %}
+{% block body %}
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+
+    <!-- Fonts -->
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
+
+    <link rel="icon" href="Favicon.png">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+
+    <style  type="text/css">
+        @import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
+
+
+        body{
+            margin: 0;
+            font-size: .9rem;
+            font-weight: 400;
+            line-height: 1.6;
+            color: #212529;
+            text-align: left;
+            background-color: #f5f8fa;
+        }
+
+        .navbar-laravel
+        {
+            box-shadow: 0 2px 4px rgba(0,0,0,.04);
+        }
+
+        .navbar-brand , .nav-link, .my-form, .login-form
+        {
+            font-family: Raleway, sans-serif;
+        }
+
+        .my-form
+        {
+            padding-top: 1.5rem;
+            padding-bottom: 1.5rem;
+        }
+
+        .my-form .row
+        {
+            margin-left: 0;
+            margin-right: 0;
+        }
+
+        .login-form
+        {
+            padding-top: 1.5rem;
+            padding-bottom: 1.5rem;
+        }
+
+        .login-form .row
+        {
+            margin-left: 0;
+            margin-right: 0;
+        }
+    </style>
+    <script type="text/javascript">
+        function validform() {
+
+            var a = document.forms["my-form"]["kayit_tarihi"].value;
+            var b = document.forms["my-form"]["tel_no"].value;
+            var c = document.forms["my-form"]["cagri_yapan"].value;
+            var d = document.forms["my-form"]["cagri_yolu"].value;
+            var e = document.forms["my-form"]["cagri_nedeni"].value;
+            var f = document.forms["my-form"]["sokak"].value;
+            var g = document.forms["my-form"]["mahalle"].value;
+            var h = document.forms["my-form"]["ilce"].value;
+            var i = document.forms["my-form"]["cinsiyet"].value;
+            var j = document.forms["my-form"]["yas"].value;
+
+
+            if (a==null || a=="")
+            {
+                alert("Kayıt tarihi giriniz");
+                return false;
+            }else if (b==null || b=="")
+            {
+                alert("Tel no giriniz");
+                return false;
+            }else if (c==null || c=="")
+            {
+                alert("Çağrı yapan kişiyi giriniz");
+                return false;""
+            }else if (d==null || d=="")
+            {
+                alert("Çağrı yolunu giriniz");
+                return false;
+            }else if (e==null || e=="")
+            {
+                alert("Çağrı nedenini giriniz");
+                return false;
+            }else if (f==null || f=="")
+            {
+                alert("Sokak giriniz");
+                return false;
+            }else if (g==null || g=="")
+            {
+                alert("Mahalle giriniz");
+                return false;
+            }else if (h==null || h=="")
+            {
+                alert("İlçe giriniz");
+                return false;
+            }else if (i==null || i=="")
+            {
+                alert("Hasta Cinsitetini giriniz");
+                return false;
+            }else if (j==null || j=="")
+            {
+                alert("Hastanın Yaşını giriniz");
+                return false;
+            }
+        }
+    </script>
+
+
+    <body>
+
+
+
+    <main class="my-form">
+        <div class="cotainer">
+            <div class="row justify-content-center">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">Hasta Kayıt</div>
+                        <div class="card-body">
+
+                            <form name="my-form" name="sheet" method="post">
+                                <div class="form-group row">
+                                    <label for="full_name" class="col-md-4 col-form-label text-md-right">Kayıt Tarihi</label>
+                                    <div class="col-md-6">
+                                        <input type="date" id="kayit_tarihi" class="form-control" name="sheet[kayittarihi]">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="telefon" class="col-md-4 col-form-label text-md-right">Tel No</label>
+                                    <div class="col-md-6">
+                                        <input type="tel" id="tel_no" class="form-control" name="sheet[tel]"value="999">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+
+                                    <label for="user_name" class="col-md-4 col-form-label text-md-right">Çağrı Yapan</label>
+                                    <div class="col-md-6">
+
+
+                                        <div class="input-group">
+                                            <span class="input-group-addon" style="max-width: 100%;"><i class="glyphicon glyphicon-user"></i></span>
+                                            <select class="selectpicker form-control" style="height: 35px;" id="cagriyapan" name="sheet[cagriyapan]" >
+                                                <option  value="{{ sheet.cagriyapan }}"> {{ sheet.cagriyapan }}</option>
+                                                <option value="0">110</option>
+                                                <option value="1">155 / Valilik</option>
+                                                <option value="2">Vatandaş / Hasta Yakını v.b.</option>
+                                                <option value="3">Kendisi</option>
+                                            </select>
+                                        </div>
+
+
+
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="phone_number" class="col-md-4 col-form-label text-md-right">Çağrı Yolu</label>
+                                    <div class="col-md-6">
+
+                                        <div class="input-group">
+                                            <span class="input-group-addon" style="max-width: 100%;"><i class="glyphicon glyphicon-user"></i></span>
+                                            <select class="selectpicker form-control" style="height: 35px;" id="cagriyolu" name="sheet[cagriyolu]" >
+                                                <option  value="{{ sheet.cagriyolu }}"> {{ sheet.cagriyolu }}</option>
+                                                <option value="0">Kişisel Başvuru </option>
+                                                <option value="1">Polis / Diğer</option>
+                                                <option value="2">SMS / Telefon / Telsiz</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="present_address" class="col-md-4 col-form-label text-md-right">Çağrı Nedeni</label>
+                                    <div class="col-md-6">
+
+                                        <div class="input-group">
+                                            <span class="input-group-addon" style="max-width: 100%;"><i class="glyphicon glyphicon-user"></i></span>
+                                            <select class="selectpicker form-control" style="height: 35px;" id="cagrinedeni" name="sheet[cagrinedeni]" >
+                                                <option  value="{{ sheet.cagrinedeni }}"> {{ sheet.cagrinedeni }}</option>
+                                                <option value="0">Diğer / Sağlık Tedbirleri v.b. </option>
+                                                <option value="1">İş Kazası</option>
+                                                <option value="2">İntihar</option>
+                                                <option value="3">Medikal</option>
+                                                <option value="4">Trafik Kazası</option>
+                                                <option value="5">Yangın</option>
+                                                <option value="6">Yaralama</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="permanent_address" class="col-md-4 col-form-label text-md-right">Kentsel Kırsal</label>
+                                    <div class="col-md-6">
+                                        <div class="input-group">
+                                            <span class="input-group-addon" style="max-width: 100%;"><i class="glyphicon glyphicon-user"></i></span>
+                                            <select class="selectpicker form-control" style="height: 35px;" id="kentselkirsal" name="sheet[kentselkirsal]" >
+                                                <option  value="{{ sheet.kentselkirsal }}"> {{ sheet.kentselkirsal }}</option>
+                                                <option value="1">Kentsel -1 </option>
+                                                <option value="0">Kırsal -0</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!--<div class="form-group row">
+                                    <label for="permanent_address" class="col-md-4 col-form-label text-md-right">Ek Hasta</label>
+                                    <div class="col-md-6">
+                                        <div class="input-group">
+                                            <span class="input-group-addon" style="max-width: 100%;"><i class="glyphicon glyphicon-user"></i></span>
+                                            <select class="selectpicker form-control" style="height: 35px;" id="kentselkirsal" name="sheet[ekhasta]" >
+                                                <option  value="{{ sheet.ekhasta }}"> {{ sheet.ekhasta }}</option>
+                                                <option value="1">Checked -1 </option>
+                                                <option value="0">Unchecked -0</option>
+                                            </select>
+                                        </div>
+
+                                    </div>
+                                </div>-->
+
+
+                                <div class="form-group row">
+                                    <label for="permanent_address" class="col-md-4 col-form-label text-md-right">Sokak</label>
+                                    <div class="col-md-6">
+                                        <input type="text" id="sokak" class="form-control" name="sheet[sokak]"value="kirac">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="nid_number" class="col-md-4 col-form-label text-md-right"> Mahalle</label>
+                                    <div class="col-md-6">
+                                        <input type="text" id="mahalle" class="form-control" name="sheet[mahalle]"value="ertugrulgazi">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="permanent_address" class="col-md-4 col-form-label text-md-right">İlçe</label>
+                                    <div class="col-md-6">
+
+                                        <div class="input-group">
+                                            <span class="input-group-addon" style="max-width: 100%;"><i class="glyphicon glyphicon-user"></i></span>
+                                            <select class="selectpicker form-control" style="height: 35px;" id="ilce" name="sheet[ilce]" >
+                                                <option  value="{{ sheet.ilce }}"> {{ sheet.ilce }}</option>
+                                                <option value="afyon yolu">afyon yolu </option>
+                                                <option value="alpu">alpu </option>
+                                                <option value="ankara yolu">ankara yolu </option>
+                                                <option value="beylikova">beylikova </option>
+                                                <option value="bursa yolu">bursa yolu </option>
+                                                <option value="cifteler">cifteler </option>
+                                                <option value="gunyuzu">gunyuzu </option>
+                                                <option value="han">han </option>
+                                                <option value="inonu">inonu </option>
+                                                <option value="kutahya yolu">kutahya yolu </option>
+                                                <option value="mahmudiye">mahmudiye </option>
+                                                <option value="mihalgazi">mihalgazi </option>
+                                                <option value="mihaliccik">mihaliccik </option>
+                                                <option value="saricakaya">saricakaya </option>
+                                                <option value="seyitgazi">seyitgazi </option>
+                                                <option value="sivrihisar">sivrihisar </option>
+                                                <option value="tepebasi">tepebaşı </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="permanent_address" class="col-md-4 col-form-label text-md-right">Cinsiyet</label>
+                                    <div class="col-md-6">
+                                        <div class="input-group">
+                                            <span class="input-group-addon" style="max-width: 100%;"><i class="glyphicon glyphicon-user"></i></span>
+                                            <select class="selectpicker form-control" style="height: 35px;" id="ilce" name="sheet[cinsiyet]" >
+                                                <option  value="{{ sheet.cinsiyet }}"> {{ sheet.cinsiyet }}</option>
+                                                <option value="1">Kadın -1 </option>
+                                                <option value="0">Erkek -0</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group row">
+                                    <label for="permanent_address" class="col-md-4 col-form-label text-md-right">Yaş</label>
+                                    <div class="col-md-6">
+                                        <input type="text" id="yas" class="form-control" name="sheet[yas]"value="22">
+                                    </div>
+                                </div>
+
+
+                                <div class="col-md-6 offset-md-4">
+                                    <button type="submit" class="btn btn-primary">
+                                        Kaydet
+                                    </button>
+                                </div>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    </body>
+{% endblock %}
+
+

@@ -1,0 +1,502 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Anasayfa{% endblock %}
+
+{% block body %}
+<div class="breadcrumbs">
+    <div class="col-sm-4">
+        <div class="page-header float-left">
+            <div class="page-title">
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-8">
+        <div class="page-header float-right">
+            <div class="page-title">
+                <ol class="breadcrumb text-right">
+                    <li><a href="#">Anasayfa</a></li>
+                    <li><a href="#">Harita</a></li>
+                    <li class="active">Sokak Haritası</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+<hr>
+
+<div class="container bootstrap snippet">
+    <div class="row">
+        <div class="col-lg-3 col-sm-6">
+            <div class="circle-tile ">
+                <a href="#">
+                    <div class="circle-tile-heading dark-blue"><i class="fa fa-users fa-fw fa-3x"></i></div>
+                </a>
+                <div class="circle-tile-content dark-blue">
+                    <div class="circle-tile-description text-faded"> Toplam Hasta</div>
+                    <div class="circle-tile-number text-faded ">{{ hastaSayi }}</div>
+                    <a class="circle-tile-footer" href="#"></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-sm-6">
+            <div class="circle-tile ">
+                <a href="#">
+                    <div class="circle-tile-heading red"><i class="fa fa-users fa-fw fa-3x"></i></div>
+                </a>
+                <div class="circle-tile-content red">
+                    <div class="circle-tile-description text-faded"> ÇOK ACİL</div>
+                    <div class="circle-tile-number text-faded ">{{ redZone }}</div>
+                    <a class="circle-tile-footer" href="#"></a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-sm-6">
+            <div class="circle-tile ">
+                <a href="#">
+                    <div class="circle-tile-heading yellow"><i class="fa fa-users fa-fw fa-3x"></i></div>
+                </a>
+                <div class="circle-tile-content yellow">
+                    <div class="circle-tile-description text-faded"> ACİL</div>
+                    <div class="circle-tile-number text-faded ">{{ yellowZone }}</div>
+                    <a class="circle-tile-footer" href="#"></a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-sm-6">
+            <div class="circle-tile ">
+                <a href="#">
+                    <div class="circle-tile-heading green"><i class="fa fa-users fa-fw fa-3x"></i></div>
+                </a>
+                <div class="circle-tile-content green">
+                    <div class="circle-tile-description text-faded"> ACİL OLMAYAN</div>
+                    <div class="circle-tile-number text-faded ">{{ greenZone }}</div>
+                    <a class="circle-tile-footer" href="#"></a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div id="map" style="width: 100%; height: 500px; border: 1px solid #AAA;"></div>
+
+
+<hr>
+
+<div class="container">
+    <h2>Ambulans Ekip Bilgileri</h2>
+    <p>Ekipler Hakkında genel istatistiki bilgiler ve ekip değerlendirme puanları</p>
+
+    <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#home">Tepebaşı</a></li>
+        <li><a data-toggle="tab" href="#menu1">Odunpazarı</a></li>
+
+    </ul>
+
+    <div class="tab-content">
+        <div id="home" class="tab-pane fade in active">
+            <h3>Tepebaşı Ekipleri</h3>
+            <div id="ana_div">
+
+                <div class="col-lg-4 col-sm-7">
+                    <div class="circle-tile ">
+                        <a href="#">
+                            <div class="circle-tile-heading blue"><i class="fa fa-ambulance fa-fw fa-3x"></i></div>
+                        </a>
+                        <div class="circle-tile-content blue">
+                            <div class="circle-tile-number text-faded ">Ekip TB-1</div>
+                            <div class="circle-tile-description text-faded"> Görev Sayısı
+                                : {{ objEkip.TB1.gorev }}</div>
+                            <div class="circle-tile-description text-faded"> Toplam Görev
+                                :{{ ((objEkip.TB1.toplam) /60)|round }} (dk)
+                            </div>
+                            <div class="circle-tile-description text-faded"> Toplam KM : {{ objEkip.TB1.kmfark }}
+                                KM
+                            </div>
+                            <div class="circle-tile-description text-faded"> Maks. KM : {{ objEkip.TB1.maxkm }}KM
+                            </div>
+                            <div class="circle-tile-description text-faded"> Maks. Süre
+                                : {{ ((objEkip.TB1.maxtop)/60)|round }} (dk)
+                            </div>
+                            <div class="circle-tile-description text-faded"> Min. KM : {{ objEkip.TB1.minkm }}KM
+                            </div>
+                            <div class="circle-tile-description text-faded"> Min. Süre
+                                : {{ ((objEkip.TB1.mintop)/60)|round }} (dk)
+                            </div>
+                            <br>
+                            <a class="circle-tile-footer green" href="#">Ekip Puanı :{{(((((objEkip.TB1.kmfark / objEkip.TB1.gorev )|round)- objEkip.TB1.minkm ) / ((objEkip.TB1.maxkm - objEkip.TB1.minkm )))* 10 )|round(1)}} <br></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-sm-7">
+                    <div class="circle-tile ">
+                        <a href="#">
+                            <div class="circle-tile-heading blue"><i class="fa fa-ambulance fa-fw fa-3x"></i></div>
+                        </a>
+                        <div class="circle-tile-content blue">
+                            <div class="circle-tile-number text-faded ">Ekip TB-2</div>
+                            <div class="circle-tile-description text-faded"> Görev Sayısı
+                                : {{ objEkip.TB2.gorev }}</div>
+                            <div class="circle-tile-description text-faded"> Toplam
+                                Görev: {{ ((objEkip.TB2.toplam) /60)|round }} (dk)
+                            </div>
+                            <div class="circle-tile-description text-faded"> Toplam KM : {{ objEkip.TB2.kmfark }}
+                                KM
+                            </div>
+                            <div class="circle-tile-description text-faded"> Maks. KM : {{ objEkip.TB2.maxkm }}KM
+                            </div>
+                            <div class="circle-tile-description text-faded"> Maks. Süre
+                                : {{ ((objEkip.TB2.maxtop)/60)|round }} (dk)
+                            </div>
+                            <div class="circle-tile-description text-faded"> Min. KM : {{ objEkip.TB2.minkm }}KM
+                            </div>
+                            <div class="circle-tile-description text-faded"> Min. Süre
+                                : {{ ((objEkip.TB2.mintop)/60)|round }} (dk)
+                            </div>
+                            <br>
+                            <a class="circle-tile-footer green" href="#">Ekip Puanı :{{(((objEkip.TB2.kmfark /  objEkip.TB2.gorev )- objEkip.TB2.minkm) / (objEkip.TB2.maxkm - objEkip.TB2.minkm ) * -1)|round(1)}} <br></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-sm-7">
+                    <div class="circle-tile ">
+                        <a href="#">
+                            <div class="circle-tile-heading blue"><i class="fa fa-ambulance fa-fw fa-3x"></i></div>
+                        </a>
+                        <div class="circle-tile-content blue">
+                            <div class="circle-tile-number text-faded ">Ekip TB-3</div>
+                            <div class="circle-tile-description text-faded"> Görev Sayısı
+                                : {{ objEkip.TB3.gorev }}</div>
+                            <div class="circle-tile-description text-faded"> Toplam Görev
+                                : {{ ((objEkip.TB3.toplam) /60)|round }} (dk)
+                            </div>
+                            <div class="circle-tile-description text-faded"> Toplam KM : {{ objEkip.TB3.kmfark }}
+                                KM
+                            </div>
+                            <div class="circle-tile-description text-faded"> Maks. KM : {{ objEkip.TB3.maxkm }}KM
+                            </div>
+                            <div class="circle-tile-description text-faded"> Maks. Süre
+                                : {{ ((objEkip.TB3.maxtop)/60)|round }} (dk)
+                            </div>
+                            <div class="circle-tile-description text-faded"> Min. KM : {{ objEkip.TB3.minkm }}KM
+                            </div>
+                            <div class="circle-tile-description text-faded"> Min. Süre
+                                : {{ ((objEkip.TB3.mintop)/60)|round }} (dk)
+                            </div>
+                            <br>
+                            <a class="circle-tile-footer green" href="#">Ekip Puanı : {{(((((objEkip.TB3.kmfark / objEkip.TB3.gorev ))- objEkip.TB3.minkm ) / ((objEkip.TB3.maxkm - objEkip.TB3.minkm )))* 10 )|round(1)}} <br></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-sm-7">
+                    <div class="circle-tile ">
+                        <a href="#">
+                            <div class="circle-tile-heading blue"><i class="fa fa-ambulance fa-fw fa-3x"></i></div>
+                        </a>
+                        <div class="circle-tile-content blue">
+                            <div class="circle-tile-number text-faded ">Ekip TB-4</div>
+                            <div class="circle-tile-description text-faded"> Görev Sayısı
+                                : {{ objEkip.TB4.gorev }}</div>
+                            <div class="circle-tile-description text-faded"> Toplam Görev
+                                : {{ ((objEkip.TB4.toplam) /60)|round }} (dk)
+                            </div>
+                            <div class="circle-tile-description text-faded"> Toplam KM : {{ objEkip.TB4.kmfark }}
+                                KM
+                            </div>
+                            <div class="circle-tile-description text-faded"> Maks. KM : {{ objEkip.TB4.maxkm }}KM
+                            </div>
+                            <div class="circle-tile-description text-faded"> Maks. Süre
+                                : {{ ((objEkip.TB4.maxtop)/60)|round }} (dk)
+                            </div>
+                            <div class="circle-tile-description text-faded"> Min. KM : {{ objEkip.TB4.minkm }}KM
+                            </div>
+                            <div class="circle-tile-description text-faded"> Min. Süre
+                                : {{ ((objEkip.TB4.mintop)/60)|round }} (dk)
+                            </div>
+                            <br>
+                            <a class="circle-tile-footer green" href="#">Ekip Puanı :{{(((((objEkip.TB4.kmfark / objEkip.TB4.gorev )|round)- objEkip.TB4.minkm ) / ((objEkip.TB4.maxkm - objEkip.TB4.minkm )))* 10 )|round(1)}}  <br></a>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-lg-4 col-sm-7">
+                    <div class="circle-tile ">
+                        <a href="#">
+                            <div class="circle-tile-heading blue"><i class="fa fa-ambulance fa-fw fa-3x"></i></div>
+                        </a>
+                        <div class="circle-tile-content blue">
+                            <div class="circle-tile-number text-faded ">Ekip TB-6</div>
+                            <div class="circle-tile-description text-faded"> Görev Sayısı
+                                : {{ objEkip.TB6.gorev }}</div>
+                            <div class="circle-tile-description text-faded"> Toplam Görev
+                                : {{ ((objEkip.TB6.toplam) /60)|round }} (dk)
+                            </div>
+                            <div class="circle-tile-description text-faded"> Toplam KM : {{ objEkip.TB6.kmfark }}
+                                KM
+                            </div>
+                            <div class="circle-tile-description text-faded"> Maks. KM : {{ objEkip.TB6.maxkm }}KM
+                            </div>
+                            <div class="circle-tile-description text-faded"> Maks. Süre
+                                : {{ ((objEkip.TB6.maxtop)/60)|round }} (dk)
+                            </div>
+                            <div class="circle-tile-description text-faded"> Min. KM : {{ objEkip.TB6.minkm }}KM
+                            </div>
+                            <div class="circle-tile-description text-faded"> Min. Süre
+                                : {{ ((objEkip.TB6.mintop)/60)|round }} (dk)
+                            </div>
+                            <br>
+                            <a class="circle-tile-footer green" href="#">Ekip Puanı :{{(((((objEkip.TB6.kmfark / objEkip.TB6.gorev )|round)- objEkip.TB6.minkm ) / ((objEkip.TB6.maxkm - objEkip.TB6.minkm )))* 10 )|round(1)}} <br></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-sm-7">
+                    <div class="circle-tile ">
+                        <a href="#">
+                            <div class="circle-tile-heading blue"><i class="fa fa-ambulance fa-fw fa-3x"></i></div>
+                        </a>
+                        <div class="circle-tile-content blue">
+                            <div class="circle-tile-number text-faded ">Ekip TB-7</div>
+                            <div class="circle-tile-description text-faded"> Görev Sayısı
+                                : {{ objEkip.TB7.gorev }}</div>
+                            <div class="circle-tile-description text-faded"> Toplam Görev
+                                : {{ ((objEkip.TB7.toplam) /60)|round }} (dk)
+                            </div>
+                            <div class="circle-tile-description text-faded"> Toplam KM : {{ objEkip.TB7.kmfark }}
+                                KM
+                            </div>
+                            <div class="circle-tile-description text-faded"> Maks. KM : {{ objEkip.TB7.maxkm }}KM
+                            </div>
+                            <div class="circle-tile-description text-faded"> Maks. Süre
+                                : {{ ((objEkip.TB7.maxtop)/60)|round }} (dk)
+                            </div>
+                            <div class="circle-tile-description text-faded"> Min. KM : {{ objEkip.TB7.minkm }}KM
+                            </div>
+                            <div class="circle-tile-description text-faded"> Min. Süre
+                                : {{ ((objEkip.TB7.mintop)/60)|round }} (dk)
+                            </div>
+                            <br>
+                            <a class="circle-tile-footer green" href="#">Ekip Puanı : {{(((((objEkip.TB7.kmfark / objEkip.TB7.gorev )|round)- objEkip.TB7.minkm ) / ((objEkip.TB7.maxkm - objEkip.TB7.minkm )))* 10 )|round(1)}} <br></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="menu1" class="tab-pane fade">
+            <h3>Odunpazarı</h3>
+            <div id="ana_div">
+
+                <div class="col-lg-4 col-sm-7">
+                    <div class="circle-tile ">
+                        <a href="#">
+                            <div class="circle-tile-heading dark-blue"><i class="fa fa-ambulance fa-fw fa-3x"></i></div>
+                        </a>
+                        <div class="circle-tile-content dark-blue">
+                            <div class="circle-tile-number text-faded ">Ekip OP-1</div>
+                            <div class="circle-tile-description text-faded"> Görev Sayısı
+                                : {{ objEkip.OP1.gorev }}</div>
+                            <div class="circle-tile-description text-faded"> Toplam Görev
+                                :{{ ((objEkip.OP1.toplam) /60)|round }} (dk)
+                            </div>
+                            <div class="circle-tile-description text-faded"> Toplam KM : {{ objEkip.OP1.kmfark }}
+                                KM
+                            </div>
+                            <div class="circle-tile-description text-faded"> Maks. KM : {{ objEkip.OP1.maxkm }}KM
+                            </div>
+                            <div class="circle-tile-description text-faded"> Maks. Süre
+                                : {{ ((objEkip.OP1.maxtop)/60)|round }} (dk)
+                            </div>
+                            <div class="circle-tile-description text-faded"> Min. KM : {{ objEkip.OP1.minkm }}KM
+                            </div>
+                            <div class="circle-tile-description text-faded"> Min. Süre
+                                : {{ ((objEkip.OP1.mintop)/60)|round }} (dk)
+                            </div>
+                            <br>
+                            <a class="circle-tile-footer green" href="#">Ekip Puanı :{{(((((objEkip.OP1.kmfark / objEkip.OP1.gorev )|round)- objEkip.OP1.minkm ) / ((objEkip.OP1.maxkm - objEkip.OP1.minkm )))* 10 )|round(1)}}  <br></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-sm-7">
+                    <div class="circle-tile ">
+                        <a href="#">
+                            <div class="circle-tile-heading dark-blue"><i class="fa fa-ambulance fa-fw fa-3x"></i></div>
+                        </a>
+                        <div class="circle-tile-content dark-blue">
+                            <div class="circle-tile-number text-faded ">Ekip OP-2</div>
+                            <div class="circle-tile-description text-faded"> Görev Sayısı
+                                : {{ objEkip.OP2.gorev }}</div>
+                            <div class="circle-tile-description text-faded"> Toplam
+                                Görev: {{ ((objEkip.OP2.toplam) /60)|round }} (dk)
+                            </div>
+                            <div class="circle-tile-description text-faded"> Toplam KM : {{ objEkip.OP2.kmfark }}
+                                KM
+                            </div>
+                            <div class="circle-tile-description text-faded"> Maks. KM : {{ objEkip.OP2.maxkm }}KM
+                            </div>
+                            <div class="circle-tile-description text-faded"> Maks. Süre
+                                : {{ ((objEkip.OP2.maxtop)/60)|round }} (dk)
+                            </div>
+                            <div class="circle-tile-description text-faded"> Min. KM : {{ objEkip.OP2.minkm }}KM
+                            </div>
+                            <div class="circle-tile-description text-faded"> Min. Süre
+                                : {{ ((objEkip.OP2.mintop)/60)|round }} (dk)
+                            </div>
+                            <br>
+                            <a class="circle-tile-footer green" href="#">Ekip Puanı :{{(((((objEkip.OP2.kmfark / objEkip.OP2.gorev )|round)- objEkip.OP2.minkm ) / ((objEkip.OP2.maxkm - objEkip.OP2.minkm )))* 10 )|round(1)}} <br></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-sm-7">
+                    <div class="circle-tile ">
+                        <a href="#">
+                            <div class="circle-tile-heading dark-blue"><i class="fa fa-ambulance fa-fw fa-3x"></i></div>
+                        </a>
+                        <div class="circle-tile-content dark-blue">
+                            <div class="circle-tile-number text-faded ">Ekip OP-3</div>
+                            <div class="circle-tile-description text-faded"> Görev Sayısı
+                                : {{ objEkip.OP3.gorev }}</div>
+                            <div class="circle-tile-description text-faded"> Toplam Görev
+                                : {{ ((objEkip.OP3.toplam) /60)|round }} (dk)
+                            </div>
+                            <div class="circle-tile-description text-faded"> Toplam KM : {{ objEkip.OP3.kmfark }}
+                                KM
+                            </div>
+                            <div class="circle-tile-description text-faded"> Maks. KM : {{ objEkip.OP3.maxkm }}KM
+                            </div>
+                            <div class="circle-tile-description text-faded"> Maks. Süre
+                                : {{ ((objEkip.OP3.maxtop)/60)|round }} (dk)
+                            </div>
+                            <div class="circle-tile-description text-faded"> Min. KM : {{ objEkip.OP3.minkm }}KM
+                            </div>
+                            <div class="circle-tile-description text-faded"> Min. Süre
+                                : {{ ((objEkip.OP3.mintop)/60)|round }} (dk)
+                            </div>
+                            <br>
+                            <a class="circle-tile-footer green" href="#">Ekip Puanı :{{(((((objEkip.OP3.kmfark / objEkip.OP3.gorev )|round)- objEkip.OP3.minkm ) / ((objEkip.OP3.maxkm - objEkip.OP3.minkm )))* 10 )|round(1)}}<br></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-sm-7">
+                    <div class="circle-tile ">
+                        <a href="#">
+                            <div class="circle-tile-heading dark-blue"><i class="fa fa-ambulance fa-fw fa-3x"></i></div>
+                        </a>
+                        <div class="circle-tile-content dark-blue">
+                            <div class="circle-tile-number text-faded ">Ekip OP-4</div>
+                            <div class="circle-tile-description text-faded"> Görev Sayısı
+                                : {{ objEkip.OP4.gorev }}</div>
+                            <div class="circle-tile-description text-faded"> Toplam Görev
+                                : {{ ((objEkip.OP4.toplam) /60)|round }} (dk)
+                            </div>
+                            <div class="circle-tile-description text-faded"> Toplam KM : {{ objEkip.OP4.kmfark }}
+                                KM
+                            </div>
+                            <div class="circle-tile-description text-faded"> Maks. KM : {{ objEkip.OP4.maxkm }}KM
+                            </div>
+                            <div class="circle-tile-description text-faded"> Maks. Süre
+                                : {{ ((objEkip.OP4.maxtop)/60)|round }} (dk)
+                            </div>
+                            <div class="circle-tile-description text-faded"> Min. KM : {{ objEkip.OP4.minkm }}KM
+                            </div>
+                            <div class="circle-tile-description text-faded"> Min. Süre
+                                : {{ ((objEkip.OP4.mintop)/60)|round }} (dk)
+                            </div>
+                            <br>
+                            <a class="circle-tile-footer green" href="#">Ekip Puanı :{{(((((objEkip.OP4.kmfark / objEkip.OP4.gorev )|round)- objEkip.OP4.minkm ) / ((objEkip.OP4.maxkm - objEkip.OP4.minkm )))* 10 )|round(1)}} <br></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-sm-7">
+                    <div class="circle-tile ">
+                        <a href="#">
+                            <div class="circle-tile-heading dark-blue"><i class="fa fa-ambulance fa-fw fa-3x"></i></div>
+                        </a>
+                        <div class="circle-tile-content dark-blue">
+                            <div class="circle-tile-number text-faded ">Ekip OP-6</div>
+                            <div class="circle-tile-description text-faded"> Görev Sayısı
+                                : {{ objEkip.OP6.gorev }}</div>
+                            <div class="circle-tile-description text-faded"> Toplam Görev
+                                : {{ ((objEkip.OP6.toplam) /60)|round }} (dk)
+                            </div>
+                            <div class="circle-tile-description text-faded"> Toplam KM : {{ objEkip.OP6.kmfark }}
+                                KM
+                            </div>
+                            <div class="circle-tile-description text-faded"> Maks. KM : {{ objEkip.OP6.maxkm }}KM
+                            </div>
+                            <div class="circle-tile-description text-faded"> Maks. Süre
+                                : {{ ((objEkip.OP6.maxtop)/60)|round }} (dk)
+                            </div>
+                            <div class="circle-tile-description text-faded"> Min. KM : {{ objEkip.OP6.minkm }}KM
+                            </div>
+                            <div class="circle-tile-description text-faded"> Min. Süre
+                                : {{ ((objEkip.OP6.mintop)/60)|round }} (dk)
+                            </div>
+                            <br>
+                            <a class="circle-tile-footer green" href="#">Ekip Puanı :{{(((((objEkip.OP6.kmfark / objEkip.OP6.gorev )|round)- objEkip.OP6.minkm ) / ((objEkip.OP6.maxkm - objEkip.OP6.minkm )))* 10 )|round(1)}}<br></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-sm-7">
+                    <div class="circle-tile ">
+                        <a href="#">
+                            <div class="circle-tile-heading dark-blue"><i class="fa fa-ambulance fa-fw fa-3x"></i></div>
+                        </a>
+                        <div class="circle-tile-content dark-blue">
+                            <div class="circle-tile-number text-faded ">Ekip OP-8</div>
+                            <div class="circle-tile-description text-faded"> Görev Sayısı
+                                : {{ objEkip.OP8.gorev }}</div>
+                            <div class="circle-tile-description text-faded"> Toplam Süre
+                                : {{ ((objEkip.OP8.toplam) /60)|round }} (dk)
+                            </div>
+                            <div class="circle-tile-description text-faded"> Toplam KM : {{ objEkip.OP8.kmfark }}
+                                KM
+                            </div>
+                            <div class="circle-tile-description text-faded"> Maks. KM : {{ objEkip.OP8.maxkm }}KM
+                            </div>
+                            <div class="circle-tile-description text-faded"> Maks. Süre
+                                : {{ ((objEkip.OP8.maxtop)/60)|round }} (dk)
+                            </div>
+                            <div class="circle-tile-description text-faded"> Min. KM : {{ objEkip.OP8.minkm }}KM
+                            </div>
+                            <div class="circle-tile-description text-faded"> Min. Süre
+                                : {{ ((objEkip.OP8.mintop)/60)|round }} (dk)
+                            </div>
+                            <br>
+                            <a class="circle-tile-footer green" href="#">Ekip Puanı :{{(((((objEkip.OP8.kmfark / objEkip.OP8.gorev )|round)- objEkip.OP8.minkm ) / ((objEkip.OP8.maxkm - objEkip.OP8.minkm )))* 10 )|round(1)}}<br></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<link rel="stylesheet" type="text/css" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+<link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/MarkerCluster.css" />
+<link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/MarkerCluster.Default.css" />
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+
+<script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js'></script>
+<script type='text/javascript' src='http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js'></script>
+<script type='text/javascript' src='http://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/leaflet.markercluster.js'></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type='text/javascript' src='{{ asset('assets') }}/maps/markers.js'></script>
+<script type='text/javascript' src='{{ asset('assets') }}/maps/leaf-demo.js'></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+{% endblock %}

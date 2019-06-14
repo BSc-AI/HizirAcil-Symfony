@@ -1,0 +1,409 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<div class="container">
+    <table class="table table-striped">
+        <tbody>
+        <tr>
+            <td colspan="2">
+                <div class="card-header">Kişisel Bilgiler</div>
+                <form  name="sheet" method="post" class="well form-horizontal">
+                    <fieldset>
+
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Kayıt Tarihi</label>
+                            <div class="col-md-8 inputGroupContainer">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                    <input id="kayittarihi" name="sheet[kayittarihi]" placeholder="Kayıt Tarihi" class="form-control" required="true" value="{{ sheet.kayittarihi |date }}" type="text" readonly>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Çağrı Yapan</label>
+                            <div class="col-md-8 inputGroupContainer">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
+                                    <input id="cagriyapan" name="sheet[cagriyapan]" placeholder="Çağrı Yapan" class="form-control" required="true" value="{{ sheet.cagriyapan }}" type="text" readonly>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Çağrı Yolu</label>
+                            <div class="col-md-8 inputGroupContainer">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
+                                    <input id="cagriyolu" name="sheet[cagriyolu]" placeholder="Çağrı Yolu" class="form-control" required="true" value="{{ sheet.cagriyolu }}" type="text" readonly>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Çağrı Nedeni</label>
+                            <div class="col-md-8 inputGroupContainer">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
+                                    <input id="cagrinedeni" name="sheet[cagrinedeni]" placeholder="Çağrı Nedeni" class="form-control" required="true" value="{{ sheet.cagrinedeni }}" type="text" readonly>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Sokak</label>
+                            <div class="col-md-8 inputGroupContainer">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                                    <input id="sokak" name="sheet[sokak]" placeholder="Sokak" class="form-control" required="true" value="{{ sheet.sokak }}" type="text">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Mahalle</label>
+                            <div class="col-md-8 inputGroupContainer">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                                    <input id="mahalle" name="sheet[mahalle]" placeholder="Mahalle" class="form-control" required="true" value="{{ sheet.mahalle }}" type="text">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">İlçe</label>
+                            <div class="col-md-8 inputGroupContainer">
+                                <div class="input-group">
+                                    <span class="input-group-addon" style="max-width: 100%;"><i class="glyphicon glyphicon-home"></i></span>
+                                    <select class="selectpicker form-control" style="height: 35px;" id="ilce" name="sheet[ilce]" >
+                                        <option  value="{{ sheet.ilce }}"> {{ sheet.ilce }}</option>
+                                        <option value="afyon yolu">afyon yolu </option>
+                                        <option value="alpu">alpu </option>
+                                        <option value="ankara yolu">ankara yolu </option>
+                                        <option value="beylikova">beylikova </option>
+                                        <option value="bursa yolu">bursa yolu </option>
+                                        <option value="cifteler">cifteler </option>
+                                        <option value="gunyuzu">gunyuzu </option>
+                                        <option value="han">han </option>
+                                        <option value="inonu">inonu </option>
+                                        <option value="kutahya yolu">kutahya yolu </option>
+                                        <option value="mahmudiye">mahmudiye </option>
+                                        <option value="mihalgazi">mihalgazi </option>
+                                        <option value="mihaliccik">mihaliccik </option>
+                                        <option value="saricakaya">saricakaya </option>
+                                        <option value="seyitgazi">seyitgazi </option>
+                                        <option value="sivrihisar">sivrihisar </option>
+                                        <option value="tepebasi">sivrihisar </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Cinsiyet</label>
+                            <div class="col-md-8 inputGroupContainer">
+                                <div class="input-group">
+                                    <span class="input-group-addon" style="max-width: 100%;"><i class="glyphicon glyphicon-user"></i></span>
+                                    <select class="selectpicker form-control" style="height: 35px;" id="cinsiyet" name="sheet[cinsiyet]" >
+                                        <option  value="{{ sheet.cinsiyet }}"> {{ sheet.cinsiyet }}</option>
+                                        <option value="1">Kadın -1 </option>
+                                        <option value="0">Erkek -0</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Yaş</label>
+                            <div class="col-md-8 inputGroupContainer">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                    <input id="yas" name="sheet[yas]" placeholder="Yaş" class="form-control" required="true" value="{{ sheet.yas }}" type="text">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Sosyal Güvence</label>
+                            <div class="col-md-8 inputGroupContainer">
+                                <div class="input-group">
+                                    <span class="input-group-addon" style="max-width: 100%;"><i class="glyphicon glyphicon-earphone"></i></span>
+                                    <select class="selectpicker form-control" style="height: 35px;" id="sosyalGuvence" name="sheet[sosyalGuvence]" >
+                                        <option  value="{{ sheet.sosyalGuvence }}"> {{ sheet.sosyalGuvence }}</option>
+                                        <option value="0">Sigortalı (SGK / Bağkur V.B.) </option>
+                                        <option value="1">Sigortasız</option>
+                                        <option value="2">Yabancı Sigortalı</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card-header">Muayene Bilgiler</div>
+                        <hr>
+                        <div class="form-group">
+                            <label class="col-md-1 control-label">Bilinç</label>
+                            <div class="col-md-2 inputGroupContainer">
+                                <div class="input-group">
+                                    <span class="input-group-addon" style="max-width: 100%;"><i class="glyphicon glyphicon-user"></i></span>
+                                    <select class="selectpicker form-control" style="height: 35px;" id="bilinc" name="sheet[bilinc]" >
+                                        <option  value="{{ sheet.bilinc }}"> {{ sheet.bilinc }}</option>
+                                        <option value="AcİK">Açık</option>
+                                        <option value="BULANiK">Bulanık</option>
+                                        <option value="KAPALi">Kapalı</option>
+                                        <option value="KOMA">Koma</option>
+                                        <option value="KONFuZE">Konfuze</option>
+                                        <option value="SEMIKOMA">Semikoma</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <label class="col-md-1 control-label">Pupiler</label>
+                            <div class="col-md-3 inputGroupContainer">
+                                <div class="input-group">
+                                    <span class="input-group-addon" style="max-width: 100%;"><i class="glyphicon glyphicon-home"></i></span>
+                                    <select class="selectpicker form-control" style="height: 35px;" id="pupiler" name="sheet[pupiler]" >
+                                        <option  value="{{ sheet.pupiler }}"> {{ sheet.pupiler }}</option>
+                                        <option value="0">Reaksiyon Yok -0 </option>
+                                        <option value="1">Normal / İzokorik -1</option>
+                                        <option value="2">Anizokorik / Dilate -2..</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <label class="col-md-1 control-label" style="margin-right: 10px;">Solunum</label>
+                            <div class="col-md-2 inputGroupContainer">
+                                <div class="input-group">
+                                    <span class="input-group-addon" style="max-width: 100%;"><i class="glyphicon glyphicon-home"></i></span>
+                                    <select class="selectpicker form-control" style="height: 35px;" id="solunum" name="sheet[solunum]" >
+                                        <option  value="{{ sheet.solunum }}"> {{ sheet.solunum }}</option>
+                                        <option value="0">Yok -0 </option>
+                                        <option value="1">Normal -1</option>
+                                        <option value="2">Düzensiz -2</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-1 control-label">Cilt</label>
+                            <div class="col-md-3 inputGroupContainer">
+                                <div class="input-group">
+                                    <span class="input-group-addon" style="max-width: 100%;"><i class="glyphicon glyphicon-home"></i></span>
+                                    <select class="selectpicker form-control" style="height: 35px;" id="cilt" name="sheet[cilt]" >
+                                        <option  value="{{ sheet.cilt }}"> {{ sheet.cilt }}</option>
+                                        <option value="0">Kuru / Soluk / Terli v.b. -0 </option>
+                                        <option value="1">Normal -1</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <label class="col-md-1 control-label">Sistolik</label>
+                            <div class="col-md-2 inputGroupContainer">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                                    <input id="sistolik" name="sheet[sistolik]" placeholder="State/Province/Region" class="form-control" required="true" value="{{ sheet.sistolik }}" type="text">
+                                </div>
+                            </div>
+
+                            <label class="col-md-1 control-label" style="margin-right: 10px;">Diastolik</label>
+                            <div class="col-md-2 inputGroupContainer">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                                    <input id="diastolik" name="sheet[diastolik]" placeholder="Postal Code/ZIP" class="form-control" required="true" value="{{ sheet.diastolik }}" type="text">
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                            <label class="col-md-1 control-label">Diğer:</label>
+                            <div class="col-md-2 inputGroupContainer">
+                                <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span><input id="diger" name="sheet[diger]" placeholder="GKS" class="form-control" required="true" value="{{ sheet.diger }}" type="text"></div>
+                                <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span><input id="diger" name="sheet[diger]" placeholder="SPO" class="form-control" required="true" value="{{ sheet.diger }}" type="text"></div>
+                                <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span><input id="diger" name="sheet[diger]" placeholder="KŞ" class="form-control" required="true" value="{{ sheet.diger }}" type="text"></div>
+                            </div>
+
+                            <label class="col-md-1 control-label">Tanı:</label>
+                            <div class="col-md-3 inputGroupContainer">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                                    <input id="tani" name="sheet[tani]" placeholder="Tanı" class="form-control" required="true" value="{{ sheet.tani }}" type="text">
+                                </div>
+                            </div>
+
+                            <label class="col-md-1 control-label">Tanı2:</label>
+                            <div class="col-md-3 inputGroupContainer">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                                    <input id="tani2" name="sheet[tani2]" placeholder="Tanı" class="form-control" required="true" value="{{ sheet.tani2 }}" type="text">
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="form-group">
+                                <label class="col-md-1 control-label" style="margin-right: 10px;">Müdahale</label>
+                                <div class="col-md-5 inputGroupContainer">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+                                        <textarea id="mudahale" name="sheet[mudahale]" placeholder="Müdahale" class="form-control" required="true" value="{{ sheet.mudahale }}" type="text"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card-header">Ekip Bilgileri</div>
+                            <hr>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">Ekip No</label>
+                                <div class="col-md-3 inputGroupContainer">
+                                    <div class="input-group">
+                                        <span class="input-group-addon" style="max-width: 100%;"><i class="glyphicon glyphicon-user"></i></span>
+                                        <select class="selectpicker form-control" style="height: 35px;" id="ekipno" name="sheet[ekipno]" >
+                                            <option  value="{{ sheet.ekipno }}"> {{ sheet.ekipno }}</option>
+                                            <option value="ALPU">ALPU</option>
+                                            <option value="BEYLIKOVA">BEYLIKOVA</option>
+                                            <option value="cIFTELER">CIFTELER</option>
+                                            <option value="DisKRM">DisKRM</option>
+                                            <option value="GuNYuZu">GUNYUZU</option>
+                                            <option value="HAN">HAN</option>
+                                            <option value="ICP-3">UICP-3</option>
+                                            <option value="INoNu">INONU</option>
+                                            <option value="MAHMUDIYE">MAHMUDIYE</option>
+                                            <option value="MGAZI">MGAZI</option>
+                                            <option value="MHLcK">MHLCK</option>
+                                            <option value="ODD26">ODD26</option>
+                                            <option value="OP-1">OP-1</option>
+                                            <option value="OP-2">OP-2</option>
+                                            <option value="OP-3">OP-3</option>
+                                            <option value="OP-4">OP-4</option>
+                                            <option value="OP-5">OP-5</option>
+                                            <option value="OP-6">OP-6</option>
+                                            <option value="OP-8">OP-8</option>
+                                            <option value="SARiCAKAYA">SARICAKAYA</option>
+                                            <option value="SG-1">SG-1</option>
+                                            <option value="SG-2">SG-2</option>
+                                            <option value="SH-1">SH-1</option>
+                                            <option value="SH-2">SH-2</option>
+                                            <option value="TB-1">TB-1</option>
+                                            <option value="TB-2">TB-2</option>
+                                            <option value="TB-3">TB-3</option>
+                                            <option value="TB-4">TB-4</option>
+                                            <option value="TB-6">TB-6</option>
+                                            <option value="TB-7">TB-7</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">Ayrılış Zamanı</label>
+                                <div class="col-md-3 inputGroupContainer">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                        <input id="ayrilisZamani" name="sheet[ayrilisZamani]" placeholder="Ayrılış Zamanı" class="form-control" required="true" value="{{ sheet.ayrilisZamani |date }}" type="datetime-local">
+                                    </div>
+                                </div>
+
+                                <label class="col-md-3 control-label">Varış Zamanı</label>
+                                <div class="col-md-3 inputGroupContainer">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                        <input id="varisZamani" name="sheet[varisZamani]" placeholder="Varış Zamanı" class="form-control" required="true" value="{{ sheet.varisZamani |date }}" type="datetime-local">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">Buluşma Zamanı</label>
+                                <div class="col-md-3 inputGroupContainer">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                        <input id="BulusmaZamani" name="sheet[BulusmaZamani]" placeholder="Buluşma Zamanı" class="form-control" required="true" value="{{ sheet.BulusmaZamani|date }}" type="datetime-local">
+                                    </div>
+                                </div>
+
+                                <label class="col-md-3 control-label">Hareket Zamanı</label>
+                                <div class="col-md-3 inputGroupContainer">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                        <input id="HareketZamani" name="sheet[HareketZamani]" placeholder="Hareket Zamanı" class="form-control" required="true" value="{{ sheet.HareketZamani|date  }}" type="datetime-local">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+
+                                <label class="col-md-2 control-label">Vaka Veriş Zamanı</label>
+                                <div class="col-md-3 inputGroupContainer">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                        <input id="vakaVerisZamani" name="sheet[vakaVerisZamani]" placeholder="Vaka Veriş Zamanı" class="form-control" required="true" value="{{ sheet.vakaVerisZamani|date  }}" type="datetime-local">
+                                    </div>
+                                </div>
+
+                                <label class="col-md-3 control-label">Çağrı Zamanı</label>
+                                <div class="col-md-3 inputGroupContainer">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                        <input id="cagriZamani" name="sheet[cagriZamani]" placeholder="Çağrı Zamanı" class="form-control" required="true" value="{{ sheet.cagriZamani|date  }}" type="datetime-local">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">Varış KM</label>
+                                <div class="col-md-3 inputGroupContainer">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                        <input id="VarisKM" name="sheet[VarisKM]" placeholder="Varış KM" class="form-control" required="true" value="{{ sheet.VarisKM }}" type="text">
+                                    </div>
+                                </div>
+
+                                <label class="col-md-3 control-label">Çıkış KM</label>
+                                <div class="col-md-3 inputGroupContainer">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                        <input id="cikisKM" name="sheet[cikisKM]" placeholder="Çıkıs KM" class="form-control" required="true" value="{{ sheet.cikisKM }}" type="text">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">Kendi Bölgesi ?</label>
+                                <div class="col-md-8 inputGroupContainer">
+                                    <div class="input-group">
+                                        <span class="input-group-addon" style="max-width: 100%;"><i class="glyphicon glyphicon-user"></i></span>
+                                        <select class="selectpicker form-control" style="height: 35px;" id="kendibolgesi" name="sheet[kendibolgesi]" >
+                                            <option  value="{{ sheet.kendibolgesi }}"> {{ sheet.kendibolgesi }}</option>
+                                            <option value="1">Checked -1 </option>
+                                            <option value="0">Unchecked -0</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">Kentsel / Kırsal</label>
+                                <div class="col-md-8 inputGroupContainer">
+                                    <div class="input-group">
+                                        <span class="input-group-addon" style="max-width: 100%;"><i class="glyphicon glyphicon-user"></i></span>
+                                        <select class="selectpicker form-control" style="height: 35px;" id="kentselkirsal" name="sheet[kentselkirsal]" >
+                                            <option  value="{{ sheet.kentselkirsal }}"> {{ sheet.kentselkirsal }}</option>
+                                            <option value="1">Kentsel -1 </option>
+                                            <option value="0">Kırsal -0</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 offset-md-4">
+                                <button type="submit" class="btn btn-primary">
+                                    Kaydet
+                                </button>
+                            </div>
+
+                    </fieldset>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

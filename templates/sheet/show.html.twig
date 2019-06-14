@@ -1,0 +1,217 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Sheet{% endblock %}
+
+{% block body %}
+    <div class="col-sm-12">
+        <h1>{{ sheet.adsoyad }}</h1>
+        <table class="table">
+            <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ sheet.id }}</td>
+            </tr>
+            <tr>
+                <th>Kayittarihi</th>
+                <td>{{ sheet.kayittarihi ? sheet.kayittarihi|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Tel</th>
+                <td>{{ sheet.tel }}</td>
+            </tr>
+            <tr>
+                <th>Cagriyapan</th>
+                <td>{{ sheet.cagriyapan }}</td>
+            </tr>
+            <tr>
+                <th>Cagriyolu</th>
+                <td>{{ sheet.cagriyolu }}</td>
+            </tr>
+            <tr>
+                <th>Cagrinedeni</th>
+                <td>{{ sheet.cagrinedeni }}</td>
+            </tr>
+            <tr>
+                <th>Sokak</th>
+                <td>{{ sheet.sokak }}</td>
+            </tr>
+            <tr>
+                <th>Mahalle</th>
+                <td>{{ sheet.mahalle }}</td>
+            </tr>
+            <tr>
+                <th>Ilce</th>
+                <td>{{ sheet.ilce }}</td>
+            </tr>
+            <tr>
+                <th>Adres</th>
+                <td>{{ sheet.adres }}</td>
+            </tr>
+
+            <tr>
+                <th>Cinsiyet</th>
+                <td>{{ sheet.cinsiyet }}</td>
+            </tr>
+            <tr>
+                <th>Yas</th>
+                <td>{{ sheet.yas }}</td>
+            </tr>
+            <tr>
+                <th>SosyalGuvence</th>
+                <td>{{ sheet.sosyalGuvence }}</td>
+            </tr>
+            <tr>
+                <th>Oncelik</th>
+                <td>{{ sheet.oncelik }}</td>
+            </tr>
+            <tr>
+                <th>Ekhasta</th>
+                <td>{{ sheet.ekhasta }}</td>
+            </tr>
+            <tr>
+                <th>Bilinc</th>
+                <td>{{ sheet.bilinc }}</td>
+            </tr>
+
+            <tr>
+                <th>Bilincdurumu</th>
+                <td>{{ sheet.bilincdurumu }}</td>
+            </tr>
+            <tr>
+                <th>Pupiler</th>
+                <td>{{ sheet.pupiler }}</td>
+            </tr>
+            <tr>
+                <th>Solunum</th>
+                <td>{{ sheet.solunum }}</td>
+            </tr>
+            <tr>
+                <th>Cilt</th>
+                <td>{{ sheet.cilt }}</td>
+            </tr>
+            <tr>
+                <th>Diger</th>
+                <td>{{ sheet.diger }}</td>
+            </tr>
+            <tr>
+                <th>Sistolik</th>
+                <td>{{ sheet.sistolik }}</td>
+            </tr>
+            <tr>
+                <th>Diastolik</th>
+                <td>{{ sheet.diastolik }}</td>
+            </tr>
+            <tr>
+                <th>Tani</th>
+                <td>{{ sheet.tani }}</td>
+            </tr>
+            <tr>
+                <th>Tani2</th>
+                <td>{{ sheet.tani2 }}</td>
+            </tr>
+            <tr>
+                <th>Mudahale</th>
+                <td>{{ sheet.mudahale }}</td>
+            </tr>
+            <tr>
+                <th>Hastane</th>
+                <td>{{ sheet.hastane }}</td>
+            </tr>
+            <tr>
+                <th>Kentselkirsal</th>
+                <td>{{ sheet.kentselkirsal }}</td>
+            </tr>
+            <tr>
+                <th>Ekipno</th>
+                <td>{{ sheet.ekipno }}</td>
+            </tr>
+            <tr>
+                <th>Kendibolgesi</th>
+                <td>{{ sheet.kendibolgesi }}</td>
+            </tr>
+            <tr>
+                <th>Cikiskm</th>
+                <td>{{ sheet.cikiskm }}</td>
+            </tr>
+            <tr>
+                <th>Variskm</th>
+                <td>{{ sheet.variskm }}</td>
+            </tr>
+            <tr>
+                <th>Kmfark</th>
+                <td>{{ sheet.kmfark }}</td>
+            </tr>
+            <tr>
+                <th>Cagrizamani</th>
+                <td>{{ sheet.cagrizamani ? sheet.cagrizamani|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Vakaveriszamani</th>
+                <td>{{ sheet.vakaveriszamani ? sheet.vakaveriszamani|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Hareketzamani</th>
+                <td>{{ sheet.hareketzamani ? sheet.hareketzamani|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Bulusmazamani</th>
+                <td>{{ sheet.bulusmazamani ? sheet.bulusmazamani|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Variszamani</th>
+                <td>{{ sheet.variszamani ? sheet.variszamani|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Ayriliszamani</th>
+                <td>{{ sheet.ayriliszamani ? sheet.ayriliszamani|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Varis</th>
+                <td>{{ sheet.varis ? sheet.varis|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Ayrilis</th>
+                <td>{{ sheet.ayrilis ? sheet.ayrilis|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Donus</th>
+                <td>{{ sheet.donus ? sheet.donus|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Reaksiyon</th>
+                <td>{{ sheet.reaksiyon }}</td>
+            </tr>
+            <tr>
+                <th>Ulasim</th>
+                <td>{{ sheet.ulasim }}</td>
+            </tr>
+            <tr>
+                <th>Mesguliyet</th>
+                <td>{{ sheet.mesguliyet }}</td>
+            </tr>
+            <tr>
+                <th>Toplam</th>
+                <td>{{ sheet.toplam }}</td>
+            </tr>
+            <tr>
+                <th>Sonuc</th>
+                <td>{{ sheet.sonuc }}</td>
+            </tr>
+            <tr>
+                <th>Gitmeligitmemeli</th>
+                <td>{{ sheet.gitmeligitmemeli }}</td>
+            </tr>
+            <tr>
+                <th>Yatiszamani</th>
+                <td>{{ sheet.yatiszamani ? sheet.yatiszamani|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <a href="{{ path('sheet_index') }}">back to list</a>
+
+        <a href="{{ path('sheet_edit', {'id': sheet.id}) }}">edit</a>
+
+        {{ include('sheet/_delete_form.html.twig') }}
+    </div>
+{% endblock %}

@@ -1,0 +1,81 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hasta Bilgileri{% endblock %}
+
+{% block body %}
+    <div class="breadcrumbs">
+        <div class="col-sm-4">
+            <div class="page-header float-left">
+                <div class="page-title">
+                    <h1>Hasta Kayıtları</h1>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-8">
+            <div class="page-header float-right">
+                <div class="page-title">
+                    <ol class="breadcrumb text-right">
+                        <li><a href="#">Anasayfa</a></li>
+                        <li><a href="#">Veri</a></li>
+                        <li class="active">Veri Tablosu</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12">
+
+        <div class="card">
+            <div class="card-header">
+                <strong class="card-title">Veri Tablosu</strong>
+            </div>
+            <div class="card-body">
+                <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
+                    <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Sokak</th>
+                        <th>İlçe</th>
+                        <th>Cinsiyet</th>
+                        <th>Yas</th>
+                        <th>Hastane</th>
+                        <th>Çağrı Yapan</th>
+                        <th>Çağrı Yolu</th>
+                        <th>Çağrı Nedeni</th>
+                        <th>KM - farkı</th>
+                        <th>Sonuç</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    {% for sheet in data %}
+                        <tr>
+                            <td>{{ sheet.id }}</td>
+                            <td>{{ sheet.sokak }}</td>
+                            <td>{{ sheet.ilce }}</td>
+                            <td>{{ sheet.cinsiyet }}</td>
+                            <td>{{ sheet.yas }}</td>
+                            <td>{{ sheet.hastane }}</td>
+                            <td>{{ sheet.cagriyapan }}</td>
+                            <td>{{ sheet.cagriyolu }}</td>
+                            <td>{{ sheet.cagrinedeni }}</td>
+                            <td>{{ sheet.kmfark }}</td>
+                            <td>{{ sheet.sonuc }}</td>
+                        </tr>
+
+                    {% else %}
+                        <tr>
+                            <td colspan="51">no records found</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+
+                <div class="navigation">
+                    {{ knp_pagination_render(data) }}
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}
