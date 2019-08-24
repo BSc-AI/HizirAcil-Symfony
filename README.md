@@ -1,6 +1,6 @@
 # (Bitirme Tezi / Senior Project)
 - Acil servise gelen telefon çağrılarının bir kısmının sahte/gereksiz çağrılar olması, bu nedenle ambulans ekiplerinin gereksiz yere meşguliyetinin önlenmesi amaçlanmıştır.
-- 
+
 - Technologies: HTML/CSS - JS - PHP - AJAX - REST
 - Framework: Symfony 4.2 / PhpML
 
