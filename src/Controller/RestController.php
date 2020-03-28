@@ -57,7 +57,5 @@ class RestController  extends FOSRestController
         $response = new Response(json_encode($sorgular));
         $response->headers->set('Content-Type', 'application/json');
         return $response;
-
-
     }
 }
