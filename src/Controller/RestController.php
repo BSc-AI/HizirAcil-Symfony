@@ -39,7 +39,6 @@ class RestController  extends FOSRestController
         $response->headers->set('Content-Type', 'application/json');
         return $response;
     }
-
     /**
      * Lists all Movies.
      * @Rest\Get("/ilceler/{ilceId}")
