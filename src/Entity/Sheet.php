@@ -260,7 +260,7 @@ class Sheet
 
     /**
      * @var \DateTime|null
-     *
+    *
      * @ORM\Column(name="HareketZamani", type="datetime", nullable=true)
      */
     private $hareketzamani;
