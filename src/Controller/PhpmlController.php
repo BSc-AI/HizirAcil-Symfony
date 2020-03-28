@@ -27,7 +27,6 @@ class PhpmlController extends AbstractController
                 // Convert each line into the local $data variable
                 while (($data = fgetcsv($h, 1000, ",")) !== FALSE)
                 {
-
                     $the_big_array[] = $data;// Read the data from a single line
                 }
 
