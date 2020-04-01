@@ -35,8 +35,6 @@ use App\Service\DataService;
 
 class SheetController extends AbstractController
 {
-
-
     /**
      * @Route("/", name="sheet_index", methods={"GET"})
      */
