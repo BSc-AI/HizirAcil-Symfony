@@ -29,8 +29,6 @@ use Symfony\Component\Serializer\Serializer;
 
 use App\Service\DataService;
 
-
-
 /**
  * @Route("/sheet")
  */
