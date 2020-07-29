@@ -1,5 +1,6 @@
 # (Bitirme Tezi / Senior Project)
-- Acil servise gelen telefon çağrılarının bir kısmının sahte/gereksiz çağrılar olması, bu nedenle ambulans ekiplerinin gereksiz yere meşguliyetinin önlenmesi amaçlanmıştır.
+- TR : Acil servise gelen telefon çağrılarının bir kısmının sahte/gereksiz çağrılar olması, bu nedenle ambulans ekiplerinin gereksiz yere meşguliyetinin önlenmesi amaçlanmıştır.
+- EN : It is aimed that some of phone calls to the emergency department are fake or unnecessary calls thus preventing unnecessary occupation of ambulance teams.If we can predict whether incoming calls are real by using machiene learning algortihms, we can provide logical approaches to the call operator related to incoming call.
 
 - Technologies: HTML/CSS - JS - PHP - AJAX - REST
 - Framework: Symfony 4.2 / PhpML
