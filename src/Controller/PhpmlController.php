@@ -40,42 +40,26 @@ class PhpmlController extends AbstractController
                 unset($the_big_array[$i][5]);
             }
             $samples = $the_big_array;
-
-
-            // $samples = [[1, 3], [1, 4], [2, 4], [3, 1], [4, 1], [4, 2]];
-            // $labels = ['a', 'a', 'a', 'b', 'b', 'b'];
-
+            
+            // KNearestNeighbors
             $classifier = new KNearestNeighbors();
             $classifier->train($samples, $labels);
-
+            
+            // NaiveBayes
             $classnaive = new NaiveBayes();
             $classnaive -> train($samples,$labels);
 
-            // echo "<pre>";
-            // echo $samples[1][1];
-            // echo $samples[1][2];
-            // echo $samples[1][3];
-            // echo $samples[1][4];
-            // echo "</pre>";
-
+            // predict
             $predict = $classifier->predict(['2','2','3','1','74']);
 
-            //$predictnaive = $classnaive->predict(['0','7','3.2','4.7','1.4']);
-
-
-            //
-            // $dataset = new CsvDataset('csviris.csv', 2, true);
-            // $testalg = new KNe//arestNeighbors();
-            // $testalg->train($dataset->getSamples(),$dataset->getTargets());
-            // $sample = [5.1,3.5,1.4,0.2];
-            // $testalg->predict($sample);
+            
             return $this->render('phpml/index.html.twig', [
                 'predict' => $predict,
                 //'naive' => $predictnaive,
             ]);
 
         } catch (FileException $e) {
-            echo "Dataset Hatası";
+            echo "404 ERROR";
         }
     }
 }
